@@ -1,0 +1,56 @@
+body {
+  font-family: Verdana, Arial, sans-serif;
+  background-color: #00005d;
+}
+#wrapper {
+  background-color: #b3c7e6;
+  color: #000066;
+  width: 80%;
+  margin: auto;
+  min-width: 850px;
+}
+#leftcolumn {
+  float: left;
+  width: 150px;
+}
+#rightcolumn {
+  margin-left: 155px;
+  background-color: #ffffff;
+  color: #000000;
+}
+header {
+  background-color: #869dc7;
+  color: #00005d;
+  font-size: 150%;
+  padding: 10px 10px 10px 155px;
+}
+h2 {
+  color: #869dc7;
+  font-family: arial, sans-serif;
+}
+.content {
+  padding: 20px 20px 0 20px;
+}
+#floatleft {
+  margin: 10px 0px 10px 10px;
+  float: left;
+  width: 350px;
+  height: auto;
+}
+
+footer {
+  font-size: 70%;
+  text-align: center;
+  clear: right;
+  padding-bottom: 20px;
+}
+nav ul {
+  list-style-type: none;
+}
+nav a {
+  text-decoration: none;
+}
+
+.content ul {
+  list-style-image: url(assets/trilliumbg.gif);
+}
