@@ -34,6 +34,10 @@ nav a {
   color: #2f0508;
   font-weight: bold;
 }
+
+nav a .active {
+  color: #9f8a6d;
+}
 #rightcolumn {
   flex: 1; /* This allows the right column to take up the remaining space */
   background-color: #f5f5dd;
@@ -63,7 +67,8 @@ nav a {
   margin: 0px 20px;
 }
 .content ul {
-  list-style-image: url(assets/coffeeCup.png)
+  list-style-image: url(assets/coffeeCup.png);
+  background-size: 10px 10px;
   margin: 0px;
 }
 .flexRight > .address {
@@ -87,8 +92,10 @@ nav a {
   padding: 10px;
 }
 
-#menu dt:nth-child(4n-3),
-#menu dd:nth-child(4n-2) {
+#menu dt:nth-child(1),
+#menu dd:nth-child(2),
+#menu dt:nth-child(5),
+#menu dd:nth-child(6) {
   background-color: #cfb38c;
 }
 
