@@ -6,9 +6,11 @@ body {
 }
 header {
   background-color: #cfb38c;
-  font-size: 150%;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
+  padding: 10px;
+  background-image: url("assets/javaJam.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
 }
 header h1 {
   font-family: "spicy rice";
@@ -156,6 +158,11 @@ input[type="email"],
 input[type="date"] {
   width: 100%;
 }
+form td {
+  padding: 10px 0px;
+  vertical-align: top;
+}
+
 footer {
   font-size: 70%;
   text-align: center;
