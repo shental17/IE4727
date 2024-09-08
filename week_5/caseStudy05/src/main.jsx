@@ -6,7 +6,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <FormValidationExample />
-    {/* <App /> */}
+    {/* <FormValidationExample /> */}
+    <App />
   </StrictMode>
 );

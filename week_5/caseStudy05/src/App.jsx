@@ -5,9 +5,6 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  const [passwordsMatch, setPasswordsMatch] = useState(false);
-  const [passwordLength, setPasswordLength] = useState(false);
-  const [isSubmitButtonEnabled, setIsSubmitButtonEnabled] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -18,6 +15,48 @@ function App() {
   //setting up state variable errors to manage form validation errors
   const [errors, setErrors] = useState({});
 
+  //setting up formStatus to manage form validation errors
+  const [formStatus, setFormStatus] = useState({
+    passwordsMatch: false,
+    passwordLength: false,
+    isSubmitButtonEnabled: false,
+  });
+
+  // Validation logic moved to a separate function
+  const validateForm = (updatedData) => {
+    // Check if passwords match after state update
+    const passwordsMatch = updatedData.password === updatedData.confirmPassword;
+    //Check if password is at least 6 characters
+    const passwordLength = updatedData.password.length >= 6;
+    // Check if all fields are filled after state update
+    const allFieldsFilled = Object.values(updatedData).every((value) =>
+      Boolean(value.trim())
+    );
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      username: updatedData.username ? null : "Name is required",
+      email: updatedData.email
+        ? !/\S+@\S+\.\S+/.test(updatedData.email)
+          ? "Email is not valid"
+          : null
+        : "Email is required",
+      password: updatedData.password
+        ? !passwordLength
+          ? "Password should have at least 6 characters"
+          : null
+        : "Password is required",
+      confirmPassword: !passwordsMatch ? "Passwords do not match" : "",
+    }));
+
+    setFormStatus({
+      passwordsMatch,
+      passwordLength,
+      isSubmitButtonEnabled:
+        allFieldsFilled && passwordsMatch && passwordLength,
+    });
+  };
+
   //handleChange function is used to update the formData state based on the user input in the form fields
   const handleChange = (event) => {
     //extract the name (input fields) and value (user input) from the event target
@@ -26,20 +65,9 @@ function App() {
       const updatedData = {
         //use ... spread operator to optain the existing data in formData and update the specific input field with the new value
         ...prevData,
-        [name]: value,
+        [name]: value.trimStart(),
       };
-      // Check if passwords match after state update
-      const passwordsMatch =
-        updatedData.password === updatedData.confirmPassword;
-      //Check if password is at least 6 characters
-      const passwordLength = formData.password.length >= 6;
-      setPasswordsMatch(passwordsMatch);
-      setPasswordLength(passwordLength);
-      // Check if all fields are filled after state update
-      const allFieldsFilled = Object.values(updatedData).every(Boolean);
-      setIsSubmitButtonEnabled(
-        allFieldsFilled && passwordsMatch && passwordLength
-      );
+      validateForm(updatedData);
       return updatedData;
     });
   };
@@ -49,10 +77,22 @@ function App() {
     //Prevent the default form submission behaviour
     //Check each form field for validation errors based on the defined criteria
     event.preventDefault();
+    setFormData((prevData) => {
+      const updatedData = {
+        //use ... spread operator to optain the existing data in formData and update the specific input field with the new value
+        ...prevData,
+      };
+      // Iterate through formData and trim each value
+      for (let key in formData) {
+        if (formData.hasOwnProperty(key)) {
+          formData[key] = formData[key].trim();
+        }
+      }
+      return updatedData;
+    });
     alert("Form has been submitted successfully!");
     console.log(formData);
-    // Clear the input fields
-    event.target.reset();
+
     // Reset the formData state to clear the form fields
     setFormData({
       username: "",
@@ -60,7 +100,13 @@ function App() {
       password: "",
       confirmPassword: "",
     });
-    setIsSubmitButtonEnabled(false);
+    setFormStatus({
+      passwordsMatch: false,
+      passwordLength: false,
+      isSubmitButtonEnabled: false,
+    });
+    // Clear the input fields
+    event.target.reset();
   };
 
   return (
@@ -75,6 +121,7 @@ function App() {
           onChange={handleChange}
           required={true}
         />
+        {errors.username && <p>{errors.username}</p>}
         <label>Email</label>
         <input
           name="email"
@@ -84,9 +131,7 @@ function App() {
           onChange={handleChange}
           required={true}
         />
-        {!/\S+@\S+\.\S+/.test(formData.email) && formData.email.trim() ? (
-          <p>Email is not valid</p>
-        ) : null}
+        {errors.email && <p>{errors.email}</p>}
         <label>Password</label>
         <input
           name="password"
@@ -96,9 +141,7 @@ function App() {
           onChange={handleChange}
           required={true}
         />
-        {!passwordLength && formData.password.trim() ? (
-          <p>Password should have at least 6 characters</p>
-        ) : null}
+        {errors.password && <p>{errors.password}</p>}
         <label>Confirm Password</label>
         <input
           name="confirmPassword"
@@ -108,13 +151,11 @@ function App() {
           onChange={handleChange}
           required={true}
         />
-        {!passwordsMatch && formData.confirmPassword.trim() ? ( // Show error only if confirm password is not empty
-          <p>Passwords do not match.</p>
-        ) : null}
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button
           type="submit"
-          disabled={!isSubmitButtonEnabled}
-          className={isSubmitButtonEnabled ? "enabled" : "disabled"}
+          disabled={!formStatus.isSubmitButtonEnabled}
+          className={formStatus.isSubmitButtonEnabled ? "enabled" : "disabled"}
         >
           Submit
         </button>
