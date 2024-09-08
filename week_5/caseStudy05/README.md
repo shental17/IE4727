@@ -42,6 +42,7 @@ Created a simple form with validation.
 ## Getting Started
 ### Prerequisites
 1. Node.js
+
    Install Node.js. You can download it from <a href="https://nodejs.org/en/download/package-manager/current">Node.js official website</a>.
 ### Installation
 1. Clone the repository
