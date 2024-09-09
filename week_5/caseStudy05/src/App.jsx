@@ -161,9 +161,7 @@ function App() {
           required={true}
         />
         {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm <Password></Password>
-        </label>
+        <label>Confirm Password</label>
         <input
           name="confirmPassword"
           type="password"
