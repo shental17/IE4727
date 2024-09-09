@@ -17,17 +17,31 @@ function App() {
 
   //setting up formStatus to manage form validation errors
   const [formStatus, setFormStatus] = useState({
+    emailValid: false,
     passwordsMatch: false,
-    passwordLength: false,
+    passwordValid: false,
     isSubmitButtonEnabled: false,
   });
 
+  // Validate password
+  const checkPassword = (password) => {
+    const hasNumber = /[0-9]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const hasLength = password.length >= 8;
+    return (
+      hasNumber && hasLowercase && hasUppercase && hasSpecialChar && hasLength
+    );
+  };
   // Validation logic moved to a separate function
   const validateForm = (updatedData) => {
+    // Check if email has .com
+    const emailValid = /\S+@\S+\.\S+/.test(updatedData.email);
     // Check if passwords match after state update
     const passwordsMatch = updatedData.password === updatedData.confirmPassword;
     //Check if password is at least 6 characters
-    const passwordLength = updatedData.password.length >= 6;
+    const passwordValid = checkPassword(updatedData.password);
     // Check if all fields are filled after state update
     const allFieldsFilled = Object.values(updatedData).every((value) =>
       Boolean(value.trim())
@@ -37,23 +51,24 @@ function App() {
       ...prevErrors,
       username: updatedData.username ? null : "Name is required",
       email: updatedData.email
-        ? !/\S+@\S+\.\S+/.test(updatedData.email)
+        ? !emailValid
           ? "Email is not valid"
           : null
         : "Email is required",
       password: updatedData.password
-        ? !passwordLength
-          ? "Password should have at least 6 characters"
+        ? !passwordValid
+          ? "Password must contain 8 or more characters that are of at least one number, one special, uppercase and lowercase letter."
           : null
         : "Password is required",
       confirmPassword: !passwordsMatch ? "Passwords do not match" : "",
     }));
 
     setFormStatus({
+      emailValid,
       passwordsMatch,
-      passwordLength,
+      passwordValid,
       isSubmitButtonEnabled:
-        allFieldsFilled && passwordsMatch && passwordLength,
+        allFieldsFilled && passwordsMatch && passwordValid && emailValid,
     });
   };
 
@@ -102,7 +117,7 @@ function App() {
     });
     setFormStatus({
       passwordsMatch: false,
-      passwordLength: false,
+      passwordValid: false,
       isSubmitButtonEnabled: false,
     });
     // Clear the input fields
@@ -112,41 +127,48 @@ function App() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>Username</label>
+        <h2>Sign Up</h2>
+        <label>Username*</label>
         <input
           name="username"
           type="text"
           placeholder="username"
+          className={errors.username ? "errors" : null}
           value={formData.username}
           onChange={handleChange}
           required={true}
         />
         {errors.username && <p>{errors.username}</p>}
-        <label>Email</label>
+        <label>Email*</label>
         <input
           name="email"
           type="email"
           placeholder="example@gmail.com"
+          className={errors.email ? "errors" : null}
           value={formData.email}
           onChange={handleChange}
           required={true}
         />
         {errors.email && <p>{errors.email}</p>}
-        <label>Password</label>
+        <label>Password*</label>
         <input
           name="password"
           type="password"
           placeholder="Password"
+          className={errors.password ? "errors" : null}
           value={formData.password}
           onChange={handleChange}
           required={true}
         />
         {errors.password && <p>{errors.password}</p>}
-        <label>Confirm Password</label>
+        <label>
+          Confirm <Password></Password>
+        </label>
         <input
           name="confirmPassword"
           type="password"
           placeholder="Confirm Password"
+          className={errors.confirmPassword ? "errors" : null}
           value={formData.confirmPassword}
           onChange={handleChange}
           required={true}
