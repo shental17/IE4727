@@ -164,7 +164,7 @@ function SignUpValidation() {
           required={true}
         />
         {errors.password && <p>{errors.password}</p>}
-        <label>Confirm Password</label>
+        <label>Confirm Password*</label>
         <input
           name="confirmPassword"
           type="password"
