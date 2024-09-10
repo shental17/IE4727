@@ -22,45 +22,51 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-![Form Validation][product-screenshot]
+![Sign Up Form Validation][signup-form-screenshot]
 
-Created a simple form with validation.
+![Login Form Validation][login-form-screenshot]
+
+Created a simple form with sign up and login function and validation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
+- [![React][React.js]][React-url]
+- [![Vue][Vue.js]][Vue-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
+
 ### Prerequisites
+
 1. Node.js
 
    Install Node.js. You can download it from <a href="https://nodejs.org/en/download/package-manager/current">Node.js official website</a>.
+
 ### Installation
+
 1. Clone the repository
    ```sh
     git clone https://github.com/shental17/IE4727.git
-    ```
+   ```
 2. Navigate to the project directory
-    ```sh
-    cd week_5/caseStudy05
-    ```
+   ```sh
+   cd week_5/caseStudy05
+   ```
 3. Install NPM packages
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 4. Run the application using NPM
-    ```sh
-    npm run dev
-    ```
+   ```sh
+   npm run dev
+   ```
+
 ## Template (React + Vite)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -72,8 +78,10 @@ Currently, two official plugins are available:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
-[product-screenshot]: READMEassets/Form.png
+[signup-form-screenshot]: READMEassets/SignUpForm.png
+[login-form-screenshot]: READMEassets/LoginForm.png
