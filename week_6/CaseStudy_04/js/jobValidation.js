@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateDate(date) {
     const selectedDate = new Date(date);
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set hours to 00:00:00 for comparison
+    today.setHours(23, 59, 59, 999); // Set hours to 23:59:59 for comparison
 
     // Check if the selected date is today or in the past
     return selectedDate > today || isNaN(selectedDate.getTime());
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const startDate = startDateInput.value;
     const experience = experienceInput.value.trim();
 
-    const nameValid = !/^[A-Za-z\s]+$/.test(name);
+    const nameValid = /^[A-Za-z\s]+$/.test(name);
     const emailValid = /\S+@\S+\.\S+/.test(email);
     const startDateValid = validateDate(startDate);
     const allFieldsFilled = [name, email, experience].every(
@@ -35,21 +35,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     nameError.textContent = name
       ? nameValid
-        ? "Name can only have alphabet characters and space"
-        : null
+        ? "" // No error message if the name is valid
+        : "Name can only have alphabet characters and spaces"
       : "Name is required";
+
     emailError.textContent = email
       ? emailValid
-        ? ""
+        ? "" // No error message if the email is valid
         : "Email is not valid"
       : "Email is required";
-    startDateError.textContent = startDateValid
-      ? ""
-      : "The date cannot be today or in the past.";
-    experienceError.textContent = experience ? "" : "Experience is needed";
+
+    startDateError.textContent = startDate
+      ? startDateValid
+        ? "" // No error message if the date is valid
+        : "The date cannot be today or in the past."
+      : ""; // No error message if the date is not inputed
+
+    experienceError.textContent = experience ? "" : "Experience is required";
 
     const isSubmitButtonEnabled =
-      allFieldsFilled && nameValid && emailValid && startDateValid;
+      allFieldsFilled &&
+      nameValid &&
+      emailValid &&
+      (startDate ? startDateValid : true);
     submitButton.disabled = !isSubmitButtonEnabled;
     submitButton.className = isSubmitButtonEnabled ? "enabled" : "disabled";
   }
