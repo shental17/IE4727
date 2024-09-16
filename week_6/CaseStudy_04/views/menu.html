@@ -31,6 +31,9 @@
                   Regular house blend, decaffeinated coffee, or flavor of the
                   day. <br /><span>Endless Cup $2.00</span>
                 </td>
+                <td colspan="2">
+                  <input type="number" name="justJavaqty" value="0" min="0" />
+                </td>
               </tr>
               <tr>
                 <td>Cafe au Lait</td>
@@ -39,12 +42,41 @@
                     >Single $2.00 Double $3.00</span
                   >
                 </td>
+                <td>
+                  <input type="number" name="laitSingleqty" value="0" min="0" />
+                </td>
+                <td>
+                  <input type="number" name="laitDoubleqty" value="0" min="0" />
+                </td>
               </tr>
               <tr>
                 <td>Iced Cappuccino</td>
                 <td>
                   Sweetened espresso blended with icy-cold milk and served in a
                   chilled glass.<br /><span>Single $4.75 Double $5.75</span>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="cappucinoSingleQty"
+                    value="0"
+                    min="0"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="cappucinoDoubleQty"
+                    value="0"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><span>Total Price</span></td>
+                <td colspan="2">
+                  <input type="text" id="totalPrice" value="$0.00" readonly />
                 </td>
               </tr>
             </tbody>
@@ -62,5 +94,6 @@
         </i></small
       >
     </footer>
+    <script src="../js/menuUpdate.js"></script>
   </body>
 </html>
