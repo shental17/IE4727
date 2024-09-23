@@ -31,11 +31,19 @@
                   Regular house blend, decaffeinated coffee, or flavor of the
                   day. <br /><span>Endless Cup $2.00</span>
                 </td>
-                <td colspan="2">
-                  <input type="number" name="justJavaqty" value="0" min="0" />
+                <td>
+                  <input type="number" name="justJavaQty" value="0" min="0" />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="totalJustJavaPrice"
+                    value="$0.00"
+                    readonly
+                  />
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>Cafe au Lait</td>
                 <td>
                   House blended coffee infused into a smooth, steamed milk.<br /><span
@@ -43,10 +51,18 @@
                   >
                 </td>
                 <td>
-                  <input type="number" name="laitSingleqty" value="0" min="0" />
+                  <input type="number" name="laitSingleQty" value="0" min="0" />
                 </td>
                 <td>
-                  <input type="number" name="laitDoubleqty" value="0" min="0" />
+                  <input type="number" name="laitDoubleQty" value="0" min="0" />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="totalLaitPrice"
+                    value="$0.00"
+                    readonly
+                  />
                 </td>
               </tr>
               <tr>
@@ -71,11 +87,79 @@
                     min="0"
                   />
                 </td>
+                <td>
+                  <input
+                    type="text"
+                    id="totalCappucinoPrice"
+                    value="$0.00"
+                    readonly
+                  />
+                </td>
+              </tr> -->
+              <!-- Updated HTML -->
+              <tr>
+                <td>Cafe au Lait</td>
+                <td>
+                  House blended coffee infused into a smooth, steamed milk.<br /><span
+                    ><input
+                      type="radio"
+                      name="laitShot"
+                      value="single"
+                      checked
+                    />Single $2.00
+                    <input type="radio" name="laitShot" value="double" />Double
+                    $3.00</span
+                  >
+                </td>
+
+                <td>
+                  <input type="number" name="laitQty" value="0" min="0" />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="totalLaitPrice"
+                    value="$0.00"
+                    readonly
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Iced Cappuccino</td>
+                <td>
+                  Sweetened espresso blended with icy-cold milk and served in a
+                  chilled glass.<br /><span
+                    ><input
+                      type="radio"
+                      name="cappucinoShot"
+                      value="single"
+                      checked
+                    />Single $4.75
+                    <input
+                      type="radio"
+                      name="cappucinoShot"
+                      value="double"
+                    />Double $5.75</span
+                  >
+                </td>
+
+                <td>
+                  <input type="number" name="cappucinoQty" value="0" min="0" />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="totalCappucinoPrice"
+                    value="$0.00"
+                    readonly
+                  />
+                </td>
               </tr>
               <tr>
                 <td></td>
-                <td><span>Total Price</span></td>
-                <td colspan="2">
+                <td></td>
+                <td><span>Total Price:</span></td>
+                <td>
                   <input type="text" id="totalPrice" value="$0.00" readonly />
                 </td>
               </tr>

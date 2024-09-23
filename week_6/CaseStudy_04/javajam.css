@@ -88,7 +88,8 @@ nav a.active {
   vertical-align: middle; /* Center contents vertically */
 }
 
-#menu input {
+#menu input[text],
+input[number] {
   width: 100%; /* Make the input take the full width of its container */
   height: 100%; /* Make the input take the full height of its container */
   text-align: center;
@@ -96,8 +97,7 @@ nav a.active {
 }
 
 #menu tr:nth-child(1),
-#menu tr:nth-child(3),
-#menu tr:nth-child(4) {
+#menu tr:nth-child(3) {
   background-color: #cfb38c;
 }
 
@@ -105,7 +105,9 @@ nav a.active {
   text-align: center;
   font-weight: bold;
 }
-
+#menu tr:nth-child(4) td:nth-child(3) {
+  text-align: end;
+}
 #menu span,
 #music span {
   font-weight: bold;
